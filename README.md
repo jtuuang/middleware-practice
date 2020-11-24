@@ -6,7 +6,7 @@
 
 ## 安裝
 - 開啟終端機(Terminal)cd 到存放專案本機位置並執行: git clone https://github.com/jtuuang/middleware-practice.git
-- 進入資料夾： middleware-practice
+- 進入資料夾： cd middleware-practice
 - 初始: npm i
 - 開啟程式: npm run dev
 

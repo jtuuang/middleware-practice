@@ -9,6 +9,13 @@
 - 進入資料夾： cd middleware-practice
 - 初始: npm i
 - 開啟程式: npm run dev
+- 開啟網頁: http://localhost:3000
+
+## 可使用路由
+- GET '/'
+- GET '/new'
+- GET '/<任何有效字串>'
+- POST '/'
 
 ## 使用工具
 - Visual Studio

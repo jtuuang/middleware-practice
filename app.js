@@ -5,17 +5,18 @@ const port = 3000
 app.use(function (req, res, next) {
   const method = req.method
   const url = req.originalUrl
-  const date = new Date
-  const dateValues = [
-    date.getFullYear() + '-',
-    date.getMonth() + 1 + '-',
-    date.getDate() + ' ',
-    date.getHours() + ':',
-    date.getMinutes() + ':',
-    date.getSeconds()
+  const reqTimeStamp = new Date
+  const reqTimeStampValues = [
+    reqTimeStamp.getFullYear() + '-',
+    reqTimeStamp.getMonth() + 1 + '-',
+    reqTimeStamp.getDate() + ' ',
+    reqTimeStamp.getHours() + ':',
+    reqTimeStamp.getMinutes() + ':',
+    reqTimeStamp.getSeconds(),
   ]
-  console.log(`${dateValues.join('')} | ${method} form ${url}`)
   next()
+  const resTimeStamp = new Date
+  console.log(`${reqTimeStampValues.join('')} | ${method} from ${url} | totol time: ${resTimeStamp.getMilliseconds() - reqTimeStamp.getMilliseconds()} milliseconds`)
 })
 
 app.get('/', (req, res) => {

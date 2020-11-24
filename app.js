@@ -2,6 +2,22 @@ const express = require('express')
 const app = express()
 const port = 3000
 
+app.use(function (req, res, next) {
+  const method = req.method
+  const url = req.originalUrl
+  const date = new Date
+  const dateValues = [
+    date.getFullYear() + '-',
+    date.getMonth() + 1 + '-',
+    date.getDate() + ' ',
+    date.getHours() + ':',
+    date.getMinutes() + ':',
+    date.getSeconds()
+  ]
+  console.log(`${dateValues.join('')} | ${method} form ${url}`)
+  next()
+})
+
 app.get('/', (req, res) => {
   res.send('列出全部 Todo')
 })

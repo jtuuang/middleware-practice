@@ -1,6 +1,10 @@
 const express = require('express')
+const exphbs = require('express-handlebars')
 const app = express()
 const port = 3000
+
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
+app.set('view engine', 'handlebars')
 
 app.use(function (req, res, next) {
   const method = req.method
@@ -20,7 +24,7 @@ app.use(function (req, res, next) {
 })
 
 app.get('/', (req, res) => {
-  res.send('列出全部 Todo')
+  res.render('index')
 })
 
 app.get('/new', (req, res) => {

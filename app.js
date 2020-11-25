@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/new', (req, res) => {
-  res.send('新增 Todo 頁面')
+  res.render('new')
 })
 
 app.get('/:id', (req, res) => {

@@ -32,7 +32,7 @@ app.get('/new', (req, res) => {
 })
 
 app.get('/:id', (req, res) => {
-  res.send('顯示一筆 Todo')
+  res.render('show')
 })
 
 app.post('/', (req, res) => {

@@ -2,17 +2,14 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const app = express()
 const port = 3000
-let reqTimeStamp
-let reqTimeStampValues
-let reqDateNow
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
 app.use(function (req, res, next) {
-  reqDateNow = Date.now()
-  reqTimeStamp = new Date
-  reqTimeStampValues = [
+  const reqDateNow = Date.now()
+  const reqTimeStamp = new Date
+  const reqTimeStampValues = [
     reqTimeStamp.getFullYear() + '-',
     reqTimeStamp.getMonth() + 1 + '-',
     reqTimeStamp.getDate() + ' ',
@@ -20,30 +17,25 @@ app.use(function (req, res, next) {
     reqTimeStamp.getMinutes() + ':',
     reqTimeStamp.getSeconds(),
   ]
+  res.on('finish', () => {
+    console.log(`${reqTimeStampValues.join('')} | ${req.method} from ${req.originalUrl} | totol time: ${Date.now() - reqDateNow} milliseconds`)
+  })
   next()
 })
 
 app.get('/', (req, res) => {
-  const resDateNow = Date.now()
-  console.log(`${reqTimeStampValues.join('')} | ${req.method} from ${req.originalUrl} | totol time: ${resDateNow - reqDateNow} milliseconds`)
   res.render('index')
 })
 
 app.get('/new', (req, res) => {
-  const resDateNow = Date.now()
-  console.log(`${reqTimeStampValues.join('')} | ${req.method} from ${req.originalUrl} | totol time: ${resDateNow - reqDateNow} milliseconds`)
   res.render('new')
 })
 
 app.get('/:id', (req, res) => {
-  const resDateNow = Date.now()
-  console.log(`${reqTimeStampValues.join('')} | ${req.method} from ${req.originalUrl} | totol time: ${resDateNow - reqDateNow} milliseconds`)
   res.render('show')
 })
 
 app.post('/', (req, res) => {
-  const resDateNow = Date.now()
-  console.log(`${reqTimeStampValues.join('')} | ${req.method} from ${req.originalUrl} | totol time: ${resDateNow - reqDateNow} milliseconds`)
   res.send('新增一筆  Todo')
 })
 
